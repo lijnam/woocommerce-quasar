@@ -1,5 +1,10 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
+const webpack = require('webpack')
+const path = require('path')
+
+// Get our env variables
+const envparser = require('./config/envparser')
 
 module.exports = function (ctx) {
   return {
@@ -58,6 +63,7 @@ module.exports = function (ctx) {
     build: {
       scopeHoisting: true,
       vueRouterMode: 'hash', // available values: 'hash', 'history'
+      env: envparser(), // Injecting env varibles in process.env
       showProgress: true,
       gzip: false,
       analyze: false,
@@ -76,6 +82,16 @@ module.exports = function (ctx) {
             formatter: require('eslint').CLIEngine.getFormatter('stylish')
           }
         })
+
+        // Create an alias for our helper
+        cfg.resolve.alias.env = path.resolve(__dirname, 'config/helpers/env.js')
+
+        // Make our helper function Global
+        cfg.plugins.push(
+          new webpack.ProvidePlugin({
+            'env': 'env' // this variable is our alias, it's not a string
+          })
+        )
       }
     },
 
@@ -142,8 +158,6 @@ module.exports = function (ctx) {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
       id: 'org.woolmandu.wooquasar'
     },
-
-
     // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
     capacitor: {
       hideSplashscreen: true
