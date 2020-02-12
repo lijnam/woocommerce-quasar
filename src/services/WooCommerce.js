@@ -7,10 +7,12 @@ const WooCommerceAPI = new WooCommerceRestApi({
   version: 'wc/v3'
 })
 
-async function products () {
+async function products (page, perPage) {
   let products = WooCommerceAPI.get('products',
     {
-      'status': 'publish'
+      'status': 'publish',
+      'per_page': perPage,
+      'page': page
     })
   products = await products
   // console.log(products)

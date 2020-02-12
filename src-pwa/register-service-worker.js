@@ -33,6 +33,15 @@ register(process.env.SERVICE_WORKER_FILE, {
     if (process.env.DEV) {
       console.log('New content is downloading.')
     }
+    window.QNotify.create({
+      message: 'New update is available; Please Update',
+      icon: 'cloud_download',
+      closeBtn: 'Update',
+      timeout: 10000,
+      onDismiss () {
+        location.reload(true)
+      }
+    })
   },
 
   updated (/* registration */) {

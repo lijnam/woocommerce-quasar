@@ -1,6 +1,9 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHh lpR fFf">
+    <q-header
+      elevated
+      class="bg-dark"
+    >
       <q-toolbar>
         <q-btn
           flat
@@ -10,29 +13,50 @@
           icon="menu"
           aria-label="Menu"
         />
-
+        <img
+          src="../statics/app-logo-128x128.png"
+          width="30"
+        >
         <q-toolbar-title>
-          Quasar App
+          Woolmandu
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn
+          dense
+          flat
+          round
+          icon="shopping_cart"
+          @click="rightDrawerOpen = !rightDrawerOpen"
+        />
       </q-toolbar>
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
       bordered
+      overlay
       content-class="bg-grey-1"
     >
       <q-list>
-        <q-item-label header class="text-grey-8">Essential Links</q-item-label>
+        <q-item-label
+          header
+          class="text-grey-8"
+        >Essential Links</q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
         />
       </q-list>
+    </q-drawer>
+    <q-drawer
+      v-model="rightDrawerOpen"
+      side="right"
+      bordered
+      overlay
+      content-class="bg-grey-1"
+    >
+      <!-- drawer content -->
     </q-drawer>
 
     <q-page-container>
@@ -54,6 +78,7 @@ export default {
   data () {
     return {
       leftDrawerOpen: false,
+      rightDrawerOpen: false,
       essentialLinks: [
         {
           title: 'Docs',

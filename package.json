@@ -1,8 +1,8 @@
 {
   "name": "woocommerce-quasar",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Woocommerce Quasar",
+  "description": "Woolmandu - Handicrafts from Kathmandu",
+  "productName": "Woolmandu",
   "cordovaId": "org.woolmandu.wooquasar",
   "capacitorId": "",
   "author": "Manjil <mshrst16@gmail.com>",
