@@ -1,26 +1,19 @@
-import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api'
-
-const WooCommerceAPI = new WooCommerceRestApi({
-  url: env('WOOCOMMERCE_URL'),
-  consumerKey: env('WOOCOMMERCE_CONSUMER_KEY'),
-  consumerSecret: env('WOOCOMMERCE_CONSUMER_SECRET'),
-  version: 'wc/v3'
-})
-
+import axios from 'axios'
 async function products (page, perPage) {
-  let products = WooCommerceAPI.get('products',
+  let products = await axios.get(env('WOOCOMMERCE_API_URL') + 'products',
     {
-      'status': 'publish',
-      'per_page': perPage,
-      'page': page
+      params: {
+        'status': 'publish',
+        'per_page': perPage,
+        'page': page
+      }
     })
-  products = await products
   // console.log(products)
   return products.data
 }
 
 async function orders () {
-  let orders = WooCommerceAPI.get('orders')
+  let orders = await axios.get('orders')
   return orders.data
 }
 

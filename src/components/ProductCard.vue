@@ -28,7 +28,7 @@
 
       </q-carousel>
 
-      <q-card-section>
+    <!--   <q-card-section class="q-pb-none">
 
         <div class="row no-wrap items-center">
           <div class="col text-h6 ellipsis">
@@ -36,25 +36,28 @@
           </div>
         </div>
 
-      </q-card-section>
+      </q-card-section> -->
 
       <q-card-section class="q-pt-none">
-        <div
-          class="text-subtitle1"
-          v-html="product.price_html"
+
+        <q-card-actions
+          align="center"
+          class=""
         >
-        </div>
+          <div
+            class="text-subtitle1"
+            v-html="product.price_html"
+          >
+          </div>
+          <q-btn
+            flat
+            icon="more_vert"
+          >More options</q-btn>
+        </q-card-actions>
       </q-card-section>
 
       <q-separator />
 
-      <q-card-actions align="center">
-        <q-btn
-          flat
-          icon="more_vert"
-        >More options</q-btn>
-
-      </q-card-actions>
     </q-card>
   </div>
 
